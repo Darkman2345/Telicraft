@@ -1,0 +1,107 @@
+package telinc.telicraft.common.entities;
+
+import net.minecraft.src.Block;
+import net.minecraft.src.EntityLiving;
+import net.minecraft.src.EntityThrowable;
+import net.minecraft.src.MovingObjectPosition;
+import net.minecraft.src.NBTTagCompound;
+import net.minecraft.src.World;
+import telinc.telicraft.common.TelicraftMain;
+import telinc.telicraft.common.core.TelicraftDamageSources;
+
+public class EntityPetrify extends EntityThrowable {
+
+	private boolean canDestroyBlock = true;
+
+	public EntityPetrify(World par1World) {
+		super(par1World);
+	}
+
+	public EntityPetrify(World par1World, EntityLiving par2EntityLiving) {
+		super(par1World, par2EntityLiving);
+	}
+
+	public EntityPetrify(World par1World, double par2, double par4, double par6) {
+		super(par1World, par2, par4, par6);
+	}
+
+	@Override
+	protected void entityInit() {
+		this.canDestroyBlock = true;
+	}
+
+	/**
+	 * Called when this EntityThrowable hits a block or entity.
+	 */
+	@Override
+	protected void onImpact(MovingObjectPosition par1MovingObjectPosition) {
+		if (par1MovingObjectPosition.entityHit != null) {
+			par1MovingObjectPosition.entityHit.attackEntityFrom(
+					TelicraftDamageSources.petrify, 100);
+		}
+
+		int var10 = this.rand.nextInt(99);
+
+		if (var10 < 49 && par1MovingObjectPosition.entityHit == null) {
+			int var11 = par1MovingObjectPosition.blockX;
+			int var12 = par1MovingObjectPosition.blockY;
+			int var13 = par1MovingObjectPosition.blockZ;
+			int var14 = this.worldObj.getBlockId(var11, var12, var13);
+			boolean var15 = true;
+
+			if (var14 == Block.bedrock.blockID
+					|| var14 == Block.doorWood.blockID
+					|| var14 == Block.doorSteel.blockID
+					|| var14 == Block.dragonEgg.blockID
+					|| var14 == Block.obsidian.blockID
+					|| var14 == Block.oreDiamond.blockID
+					|| var14 == TelicraftMain.adamantOre.blockID
+					|| var14 == TelicraftMain.meteorBlock.blockID
+					|| var14 == Block.endPortal.blockID
+					|| var14 == Block.endPortalFrame.blockID
+					|| var14 == Block.portal.blockID
+					|| var14 == Block.enchantmentTable.blockID
+					|| var14 == Block.bed.blockID) {
+				var15 = false;
+			}
+
+			if (var15) {
+				this.worldObj.setBlockWithNotify(var11, var12, var13,
+						Block.stone.blockID); // Sets Stone.
+				this.worldObj.notifyBlockChange(var11, var12, var13,
+						Block.stone.blockID); // Scheudles a block update.
+			}
+		}
+
+		if (!this.worldObj.isRemote && this.rand.nextInt(8) == 0) {
+			byte var2 = 1;
+
+			if (this.rand.nextInt(32) == 0) {
+				var2 = 4;
+			}
+		}
+
+		for (int var5 = 0; var5 < 8; ++var5) {
+			this.worldObj.spawnParticle("spell", this.posX, this.posY,
+					this.posZ, 0.0D, 0.0D, 0.0D);
+		}
+
+		this.worldObj.playSoundAtEntity(this, "random.fizz", 0.5F,
+				0.4F / (this.rand.nextFloat() * 0.4F + 0.8F));
+
+		if (!this.worldObj.isRemote) {
+			this.setDead();
+		}
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound nbt) {
+		super.readEntityFromNBT(nbt);
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound nbt) {
+		super.readEntityFromNBT(nbt);
+	}
+
+}

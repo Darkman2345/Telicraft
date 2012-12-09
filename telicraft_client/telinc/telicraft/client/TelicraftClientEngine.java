@@ -1,0 +1,20 @@
+package telinc.telicraft.client;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.src.EntityPlayer;
+import telinc.telicraft.common.core.TelicraftCommonEngine;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+
+public class TelicraftClientEngine extends TelicraftCommonEngine {
+	
+	@Override
+	public int addArmor(String name) {
+		return RenderingRegistry.addNewArmourRendererPrefix(name);
+	}
+	
+	@Override
+	public EntityPlayer getPlayerInstance(){
+		return Minecraft.getMinecraft().thePlayer;
+	}
+	
+}
