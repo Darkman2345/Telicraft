@@ -5,6 +5,8 @@ import net.minecraft.src.TileEntity;
 
 public class TileEntityAlarm extends TileEntity {
 	
+	//TODO Make this actually work.
+	
 	/**
 	 * The timer of the alarm. 20 means that the alarm is off, or the sound has just started playing.
 	 * 0 means that the music finished playing, and the timer's ready to be reset back to 20.
