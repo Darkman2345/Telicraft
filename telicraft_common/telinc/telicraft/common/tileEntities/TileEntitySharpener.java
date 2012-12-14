@@ -21,6 +21,11 @@ public class TileEntitySharpener extends TileEntity implements IInventory,
 		ISidedInventory {
 	
 	/**
+	 * The Random used by the Sharpener.
+	 */
+	private Random rand = new Random();
+	
+	/**
 	 * Random value used by the sharpener.
 	 */
 	private static Random sharpenerRand = new Random();
@@ -46,9 +51,6 @@ public class TileEntitySharpener extends TileEntity implements IInventory,
 
 	/** The number of ticks that the current item has been cooking for */
 	public int sharpenerSharpenTime = 0;
-
-	/** The damage of the Sharpening Tool. */
-	private int sharpToolDamage = 0;
 
 	private EntityPlayer player;
 
@@ -229,7 +231,7 @@ public class TileEntitySharpener extends TileEntity implements IInventory,
 
 					if (this.sharpenerItemStacks[1] != null) {
 						// --this.sharpenerItemStacks[1].stackSize;
-						this.updateShapTool();
+						//this.updateShapTool();
 
 						if (this.sharpenerItemStacks[1].stackSize == 0) {
 							this.sharpenerItemStacks[1] = this.sharpenerItemStacks[1]
@@ -367,11 +369,19 @@ public class TileEntitySharpener extends TileEntity implements IInventory,
 		return 1;
 	}
 	
-	private void updateShapTool(){
+	/*private void updateShapTool(){
 		int var6 = sharpenerItemStacks[1].getItemDamage();
-		int var7 = var6 + 1;
+		int var7 = var6 + 250;
+		
+		if(var6 + var7 >= 500){
+			sharpenerItemStacks[1] = null;
+			this.worldObj.spawnParticle("iconcrack_" + TelicraftMain.sharpeningTool.shiftedIndex, (double)((float)this.xCoord + this.rand.nextFloat()), (double)((float)this.yCoord + 1.1F), (double)((float)this.yCoord + rand.nextFloat()), 0.0D, 0.0D, 0.0D);
+			this.worldObj.playSoundEffect((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D, "random.break", 1.0F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+		}else{
+			sharpenerItemStacks[1].setItemDamage(var7);
+		}
 		
 		//sharpenerItemStacks[1].setItemDamage(var7);
 		//sharpenerItemStacks[1].damageItem(1, TelicraftMain.engine.getPlayerInstance());
-	}
+	}*/
 }

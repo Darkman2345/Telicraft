@@ -1,15 +1,17 @@
 package telinc.telicraft.common.api;
 
 import java.util.List;
+import java.util.Set;
 
+import net.minecraft.src.Achievement;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IRecipe;
 import net.minecraft.src.ItemStack;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.ICraftingHandler;
 import cpw.mods.fml.common.Loader;
 
 /** Telicraft's {@linkplain cpw.mods.fml.common.registry.GameRegistry}. 
@@ -17,6 +19,7 @@ import cpw.mods.fml.common.Loader;
 public final class TCRegistry {
 	
 	private static List<ISharpenerHandler> sharpenerHandlers = Lists.newArrayList();
+	public static Set<Integer> bannedBlocksPetrify = Sets.newHashSet();
 	
 	public static boolean isTelicraftLoaded(){
 		return Loader.isModLoaded("telicraft");
@@ -118,6 +121,25 @@ public final class TCRegistry {
         for (ISharpenerHandler handler : sharpenerHandlers){
             handler.onItemTakenOut(player, item);
         }
+	}
+	
+	/**
+	 * Adds a banned block ID to the Direct Petrifying Potion's list.<br />
+	 * Banned blocks will not turn into stone when hit by the potion.
+	 * 
+	 * @param par1 The block ID to add.
+	 */
+	public static void addBannedBlockForPetrify(int par1){
+		bannedBlocksPetrify.add(par1);
+	}
+	
+	/**
+	 * Gets the HashMap of the banned blocks.
+	 * 
+	 * @return A Set (HashMap) made out of Integers.
+	 */
+	public static Set<Integer> getBannedBlocksPetrify(){
+		return bannedBlocksPetrify;
 	}
 
 }

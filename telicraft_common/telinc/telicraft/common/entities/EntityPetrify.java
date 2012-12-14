@@ -1,5 +1,7 @@
 package telinc.telicraft.common.entities;
 
+import java.util.Set;
+
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityThrowable;
@@ -7,22 +9,63 @@ import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.World;
 import telinc.telicraft.common.TelicraftMain;
+import telinc.telicraft.common.api.TCRegistry;
 import telinc.telicraft.common.core.TelicraftDamageSources;
 
-public class EntityPetrify extends EntityThrowable {
+import com.google.common.collect.Sets;
 
+public class EntityPetrify extends EntityThrowable {
 	private boolean canDestroyBlock = true;
 
 	public EntityPetrify(World par1World) {
 		super(par1World);
+		TCRegistry.addBannedBlockForPetrify(Block.bedrock.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.doorWood.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.doorSteel.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.dragonEgg.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.obsidian.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.oreDiamond.blockID);
+		TCRegistry.addBannedBlockForPetrify(TelicraftMain.adamantOre.blockID);
+		TCRegistry.addBannedBlockForPetrify(TelicraftMain.meteorBlock.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.endPortal.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.endPortalFrame.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.portal.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.enchantmentTable.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.bed.blockID);
 	}
 
 	public EntityPetrify(World par1World, EntityLiving par2EntityLiving) {
 		super(par1World, par2EntityLiving);
+		TCRegistry.addBannedBlockForPetrify(Block.bedrock.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.doorWood.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.doorSteel.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.dragonEgg.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.obsidian.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.oreDiamond.blockID);
+		TCRegistry.addBannedBlockForPetrify(TelicraftMain.adamantOre.blockID);
+		TCRegistry.addBannedBlockForPetrify(TelicraftMain.meteorBlock.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.endPortal.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.endPortalFrame.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.portal.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.enchantmentTable.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.bed.blockID);
 	}
 
 	public EntityPetrify(World par1World, double par2, double par4, double par6) {
 		super(par1World, par2, par4, par6);
+		TCRegistry.addBannedBlockForPetrify(Block.bedrock.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.doorWood.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.doorSteel.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.dragonEgg.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.obsidian.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.oreDiamond.blockID);
+		TCRegistry.addBannedBlockForPetrify(TelicraftMain.adamantOre.blockID);
+		TCRegistry.addBannedBlockForPetrify(TelicraftMain.meteorBlock.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.endPortal.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.endPortalFrame.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.portal.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.enchantmentTable.blockID);
+		TCRegistry.addBannedBlockForPetrify(Block.bed.blockID);
 	}
 
 	@Override
@@ -49,27 +92,14 @@ public class EntityPetrify extends EntityThrowable {
 			int var14 = this.worldObj.getBlockId(var11, var12, var13);
 			boolean var15 = true;
 
-			if (var14 == Block.bedrock.blockID
-					|| var14 == Block.doorWood.blockID
-					|| var14 == Block.doorSteel.blockID
-					|| var14 == Block.dragonEgg.blockID
-					|| var14 == Block.obsidian.blockID
-					|| var14 == Block.oreDiamond.blockID
-					|| var14 == TelicraftMain.adamantOre.blockID
-					|| var14 == TelicraftMain.meteorBlock.blockID
-					|| var14 == Block.endPortal.blockID
-					|| var14 == Block.endPortalFrame.blockID
-					|| var14 == Block.portal.blockID
-					|| var14 == Block.enchantmentTable.blockID
-					|| var14 == Block.bed.blockID) {
+			if (TCRegistry.getBannedBlocksPetrify().contains(var14)) {
 				var15 = false;
 			}
 
 			if (var15) {
 				this.worldObj.setBlockWithNotify(var11, var12, var13,
 						Block.stone.blockID); // Sets Stone.
-				this.worldObj.notifyBlockChange(var11, var12, var13,
-						Block.stone.blockID); // Scheudles a block update.
+				this.worldObj.markBlockForUpdate(var11, var12, var13); // Scheudles a block update.
 			}
 		}
 
