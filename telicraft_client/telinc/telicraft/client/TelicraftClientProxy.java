@@ -1,10 +1,7 @@
 package telinc.telicraft.client;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
-
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
-
 import telinc.telicraft.client.entities.RenderMeteorBomb;
 import telinc.telicraft.client.entities.RenderPetrifyClassic;
 import telinc.telicraft.client.entities.RenderPetrifyNew;
@@ -14,6 +11,7 @@ import telinc.telicraft.common.entities.EntityMeteorBombPrimed;
 import telinc.telicraft.common.entities.EntityPetrify;
 import telinc.telicraft.common.handlers.TelicraftSoundHandler;
 import telinc.telicraft.common.reference.TextureReferences;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 
 /**
  * The client side proxy.

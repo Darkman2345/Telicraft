@@ -1,8 +1,8 @@
 package telinc.telicraft.common.core;
 
-import net.minecraft.src.CraftingManager;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.ItemStack;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;

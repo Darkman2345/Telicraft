@@ -1,6 +1,6 @@
 package telinc.telicraft.common.core;
 
-import net.minecraft.src.CreativeTabs;
+import net.minecraft.creativetab.CreativeTabs;
 import telinc.telicraft.common.TelicraftMain;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;

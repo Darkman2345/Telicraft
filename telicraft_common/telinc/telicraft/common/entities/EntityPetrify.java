@@ -1,18 +1,14 @@
 package telinc.telicraft.common.entities;
 
-import java.util.Set;
-
-import net.minecraft.src.Block;
-import net.minecraft.src.EntityLiving;
-import net.minecraft.src.EntityThrowable;
-import net.minecraft.src.MovingObjectPosition;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.World;
+import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.api.TCRegistry;
 import telinc.telicraft.common.core.TelicraftDamageSources;
-
-import com.google.common.collect.Sets;
 
 public class EntityPetrify extends EntityThrowable {
 	private boolean canDestroyBlock = true;

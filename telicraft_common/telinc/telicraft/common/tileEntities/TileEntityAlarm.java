@@ -1,11 +1,11 @@
+//TODO Make this work.
+
 package telinc.telicraft.common.tileEntities;
 
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.TileEntity;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityAlarm extends TileEntity {
-	
-	//TODO Make this actually work.
 	
 	/**
 	 * The timer of the alarm. 20 means that the alarm is off, or the sound has just started playing.

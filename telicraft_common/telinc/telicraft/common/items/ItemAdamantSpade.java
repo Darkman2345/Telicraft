@@ -1,15 +1,13 @@
 package telinc.telicraft.common.items;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
-
-import net.minecraft.src.EnumRarity;
-import net.minecraft.src.EnumToolMaterial;
-import net.minecraft.src.ItemSpade;
-import net.minecraft.src.ItemStack;
-
+import net.minecraft.item.EnumRarity;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.ItemSpade;
+import net.minecraft.item.ItemStack;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.reference.TextureReferences;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
 public class ItemAdamantSpade extends ItemSpade {
 	public ItemAdamantSpade(int id, EnumToolMaterial toolMaterial) {

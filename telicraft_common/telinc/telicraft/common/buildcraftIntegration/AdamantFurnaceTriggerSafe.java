@@ -1,6 +1,6 @@
 package telinc.telicraft.common.buildcraftIntegration;
 
-import net.minecraft.src.TileEntity;
+import net.minecraft.tileentity.TileEntity;
 import telinc.telicraft.common.reference.TextureReferences;
 import telinc.telicraft.common.tileEntities.TileEntityAdamantFurnace;
 import buildcraft.api.gates.ITriggerParameter;

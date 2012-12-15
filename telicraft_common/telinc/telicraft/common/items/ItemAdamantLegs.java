@@ -1,17 +1,14 @@
 package telinc.telicraft.common.items;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
-
-import net.minecraft.src.EnumArmorMaterial;
-import net.minecraft.src.EnumRarity;
-import net.minecraft.src.ItemArmor;
-import net.minecraft.src.ItemStack;
-
+import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IArmorTextureProvider;
-
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.reference.TextureReferences;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
 public class ItemAdamantLegs extends ItemArmor implements IArmorTextureProvider {
 

@@ -1,17 +1,16 @@
 package telinc.telicraft.client.gui;
 
-import net.minecraft.src.GuiContainer;
-import net.minecraft.src.InventoryPlayer;
-import net.minecraft.src.StatCollector;
-import net.minecraft.src.World;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
-
 import telinc.telicraft.common.gui.act.ContainerACT;
 import telinc.telicraft.common.reference.TextureReferences;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiACT extends GuiContainer {

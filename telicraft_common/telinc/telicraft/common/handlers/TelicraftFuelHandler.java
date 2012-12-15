@@ -1,7 +1,7 @@
 package telinc.telicraft.common.handlers;
 
+import net.minecraft.item.ItemStack;
 import telinc.telicraft.common.TelicraftMain;
-import net.minecraft.src.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
 
 /**

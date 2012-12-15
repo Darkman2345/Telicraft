@@ -1,13 +1,20 @@
 package telinc.telicraft.common.gui.act;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-
-import net.minecraft.src.*;
+import net.minecraft.block.Block;
+import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.RecipesMapCloning;
+import net.minecraft.item.crafting.RecipesMapExtending;
+import net.minecraft.item.crafting.ShapedRecipes;
+import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraft.world.World;
 
 public class ACTManager {
 	/** The static instance of this class */
@@ -118,7 +125,7 @@ public class ACTManager {
 		this.recipes.add(new ShapelessRecipes(par1ItemStack, var3));
 	}
 
-	public ItemStack func_82787_a(InventoryCrafting par1InventoryCrafting,
+	public ItemStack findMatchingRecipe(InventoryCrafting par1InventoryCrafting,
 			World par2World) {
 		int var3 = 0;
 		ItemStack var4 = null;

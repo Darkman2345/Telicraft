@@ -1,17 +1,15 @@
 package telinc.telicraft.common.items;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
-
-import net.minecraft.src.Block;
-import net.minecraft.src.EnumRarity;
-import net.minecraft.src.EnumToolMaterial;
-import net.minecraft.src.ItemPickaxe;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Material;
-
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.EnumRarity;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemStack;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.reference.TextureReferences;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
 public class ItemAdamantPick extends ItemPickaxe {
 

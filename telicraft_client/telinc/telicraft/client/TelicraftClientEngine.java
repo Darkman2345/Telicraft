@@ -1,7 +1,7 @@
 package telinc.telicraft.client;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.src.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayer;
 import telinc.telicraft.common.core.TelicraftCommonEngine;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 

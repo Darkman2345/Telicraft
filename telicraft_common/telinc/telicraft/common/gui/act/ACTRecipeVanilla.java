@@ -1,13 +1,10 @@
 package telinc.telicraft.common.gui.act;
 
 
-import net.minecraft.src.Block;
-import net.minecraft.src.BlockCloth;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.RecipesArmorDyes;
-import net.minecraft.src.RecipesMapCloning;
-import net.minecraft.src.RecipesMapExtending;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockCloth;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class ACTRecipeVanilla {
 	public void addRecipes(ACTManager par1ACTManager){

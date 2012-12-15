@@ -1,11 +1,10 @@
 package telinc.telicraft.common.blocks;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.BlockContainer;
-import net.minecraft.src.Material;
-import net.minecraft.src.TileEntity;
-import net.minecraft.src.World;
-
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.reference.TextureReferences;
 import telinc.telicraft.common.tileEntities.TileEntityAlarm;
@@ -15,8 +14,8 @@ public class BlockAlarm extends BlockContainer {
 	public BlockAlarm(int par1) {
 		super(par1, 0, Material.circuits);
 		this.setCreativeTab(TelicraftMain.tabTelicraft);
-	}
-	
+    }
+    
 	/**
 	 * Called whenever the block is added into the world. Args: world, x, y, z
 	 */

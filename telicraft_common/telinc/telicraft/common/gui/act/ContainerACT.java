@@ -1,8 +1,15 @@
 package telinc.telicraft.common.gui.act;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryCraftResult;
+import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import telinc.telicraft.common.TelicraftMain;
-
-import net.minecraft.src.*;
 
 public class ContainerACT extends Container {
 	/** The crafting matrix inventory (3x3). */
@@ -52,7 +59,7 @@ public class ContainerACT extends Container {
 	@Override
 	public void onCraftMatrixChanged(IInventory par1IInventory) {
 		this.craftResult.setInventorySlotContents(0, ACTManager
-				.getInstance().func_82787_a(this.craftMatrix, this.worldObj));
+				.getInstance().findMatchingRecipe(this.craftMatrix, this.worldObj));
 	}
 
 	/**

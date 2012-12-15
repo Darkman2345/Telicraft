@@ -1,15 +1,15 @@
 package telinc.telicraft.common;
 
-import net.minecraft.src.Achievement;
-import net.minecraft.src.AchievementList;
-import net.minecraft.src.Block;
-import net.minecraft.src.BlockFlower;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.EnumArmorMaterial;
-import net.minecraft.src.EnumToolMaterial;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Material;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFlower;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraft.stats.AchievementList;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DungeonHooks;
@@ -180,6 +180,7 @@ public class TelicraftMain {
 		
 		config.load();
 		
+		// Blocks
 		adOreID = config.getBlock("adamantOreID", 256).getInt();
 		adBlkID = config.getBlock("adamantBlockID", 257).getInt();
 		megaAdID = config.getBlock("megaAdamantBlockID", 258).getInt();
@@ -198,6 +199,7 @@ public class TelicraftMain {
 		redstoneBlkID = config.getBlock("redstoneBlockID", 240).getInt();
 		adamantFurnaceActiveID = config.getBlock("activeAdamantFurnace", 241).getInt();
 		
+		// Items
 		adID = config.getItem("adamantID", 3843).getInt();
 		megastickID = config.getItem("megaStickID", 3844).getInt();
 		excaliburID = config.getItem("excaliburID", 3845).getInt();
@@ -216,11 +218,13 @@ public class TelicraftMain {
 		potionCustomID = config.getItem("potionID", 3859).getInt();
 		meteorDustID = config.getItem("meteorDustID", 3860).getInt();
 		
+		// Armour
 		adamantHelmetID = config.getItem("adamantHelmetID", 3861).getInt();
 		adamantChestID = config.getItem("adamantChesplateID", 3862).getInt();
 		adamantLegsID = config.getItem("adamantLeggingsID", 3863).getInt();
 		adamantBootsID = config.getItem("adamantBootsID", 3864).getInt();
 		
+		// Properties
 		potionCrazyEnable = config.get("Properties", "enablePotionCrazy", true).getBoolean(true);
 		potionPetrifyEnable = config.get("Properties", "enablePotionPetrify", true).getBoolean(true);
 		doEndstoneDamage = config.get("Properties", "darkEndstoneProperty", true).getBoolean(true);
@@ -643,6 +647,9 @@ public class TelicraftMain {
 		DungeonHooks.addDungeonLoot(new ItemStack(tomato), 95, 3, 4);
 		DungeonHooks.addDungeonLoot(new ItemStack(pepper), 95, 3, 4);
 		
+		//Register the Squill to be added when a Grass Block is Bonemeal'd
+		MinecraftForge.addGrassPlant(squill, 0, 20);
+		
 		//Main World Generator
 		GameRegistry.registerWorldGenerator(new TelicraftWorldGenerator());
 		
@@ -658,7 +665,7 @@ public class TelicraftMain {
 		notForKids = (new Achievement(1002, "explodeSharpener", 0, 5, sharpener, blueStuff)).registerAchievement();
 		youMad = (new Achievement(1003, "drinkCrazyPotion", 0, 7, Item.potion, AchievementList.potion)).registerAchievement();
 		deliciousPizza = (new Achievement(1004, "cookPizza", 4, 0, pizza, AchievementList.buildFurnace)).registerAchievement();
-		griefer = (new Achievement(1005, "makeMeteorBomb", 0, -3, meteorBomb, null)).registerAchievement();
+		griefer = (new Achievement(1005, "makeMeteorBomb", 0, -3, meteorBomb, AchievementList.diamonds)).registerAchievement();
 		
 		//Main Localizations
 		this.addGeneralLocalizations();
@@ -673,7 +680,7 @@ public class TelicraftMain {
 		this.addItemLocalizations();
 		
 		//Achievement Page
-		AchievementPage.registerAchievementPage(new AchievementPage("Telicraft", blueStuff, kingArthur, notForKids, youMad, deliciousPizza));
+		AchievementPage.registerAchievementPage(new AchievementPage("Telicraft", blueStuff, kingArthur, notForKids, youMad, deliciousPizza, griefer));
 		
 		//Entities
 		EntityRegistry.registerModEntity(EntityPetrify.class, "thrownPetrifyingPotion", 0, this, 160, 5, true);

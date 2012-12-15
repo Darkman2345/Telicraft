@@ -1,9 +1,9 @@
 package telinc.telicraft.common.handlers;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import telinc.telicraft.common.TelicraftMain;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.IInventory;
-import net.minecraft.src.ItemStack;
 import cpw.mods.fml.common.ICraftingHandler;
 
 public class TelicraftCraftingHandler implements ICraftingHandler {

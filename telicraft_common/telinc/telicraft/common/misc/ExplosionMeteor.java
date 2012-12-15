@@ -8,16 +8,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import net.minecraft.src.AxisAlignedBB;
-import net.minecraft.src.Block;
-import net.minecraft.src.ChunkPosition;
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.Explosion;
-import net.minecraft.src.MathHelper;
-import net.minecraft.src.Vec3;
-import net.minecraft.src.World;
-
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.ChunkPosition;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.World;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.core.TelicraftDamageSources;
 

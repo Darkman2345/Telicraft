@@ -3,10 +3,9 @@ package telinc.telicraft.common.api;
 import java.util.List;
 import java.util.Set;
 
-import net.minecraft.src.Achievement;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.IRecipe;
-import net.minecraft.src.ItemStack;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;

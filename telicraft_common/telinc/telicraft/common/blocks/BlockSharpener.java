@@ -2,8 +2,17 @@ package telinc.telicraft.common.blocks;
 
 import java.util.Random;
 
-import net.minecraft.src.*;
-
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.reference.MainReferences;
 import telinc.telicraft.common.reference.TextureReferences;

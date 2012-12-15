@@ -1,15 +1,15 @@
 package telinc.telicraft.common.gui.act;
 
-import telinc.telicraft.common.TelicraftMain;
-import net.minecraft.src.AchievementList;
-import net.minecraft.src.Block;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.IInventory;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Slot;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.AchievementList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
+import telinc.telicraft.common.TelicraftMain;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SlotACT extends Slot {

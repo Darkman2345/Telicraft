@@ -2,8 +2,8 @@ package telinc.telicraft.common.buildcraftIntegration;
 
 import java.util.LinkedList;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.TileEntity;
+import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
 import telinc.telicraft.common.tileEntities.TileEntityAdamantFurnace;
 import telinc.telicraft.common.tileEntities.TileEntityAlarm;
 import buildcraft.api.gates.ITrigger;

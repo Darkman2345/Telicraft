@@ -4,23 +4,20 @@ import static net.minecraftforge.common.EnumPlantType.Crop;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
-
-import net.minecraft.src.Block;
-import net.minecraft.src.BlockFlower;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.EntityLiving;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.Material;
-import net.minecraft.src.World;
-
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFlower;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.reference.TextureReferences;
 import telinc.telincCore.TelincCoreFunctions;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
 public class BlockPepperCrop extends BlockFlower implements IPlantable {
 

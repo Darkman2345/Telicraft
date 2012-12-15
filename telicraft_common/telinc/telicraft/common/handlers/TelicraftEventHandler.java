@@ -1,7 +1,5 @@
 package telinc.telicraft.common.handlers;
 
-import cpw.mods.fml.common.FMLLog;
-import net.minecraftforge.client.event.sound.SoundLoadEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import telinc.telicraft.common.TelicraftMain;

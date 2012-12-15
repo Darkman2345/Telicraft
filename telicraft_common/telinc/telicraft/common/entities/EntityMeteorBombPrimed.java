@@ -1,8 +1,8 @@
 package telinc.telicraft.common.entities;
 
-import net.minecraft.src.Entity;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.World;
+import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import telinc.telicraft.common.misc.ExplosionMeteor;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;

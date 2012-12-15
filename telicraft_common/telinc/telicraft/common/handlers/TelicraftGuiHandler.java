@@ -1,11 +1,8 @@
 package telinc.telicraft.common.handlers;
 
-import cpw.mods.fml.common.network.IGuiHandler;
-
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.TileEntity;
-import net.minecraft.src.World;
-
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import telinc.telicraft.client.gui.GuiACT;
 import telinc.telicraft.client.gui.GuiAdamantFurnace;
 import telinc.telicraft.client.gui.GuiSharpener;
@@ -14,6 +11,7 @@ import telinc.telicraft.common.gui.ContainerSharpener;
 import telinc.telicraft.common.gui.act.ContainerACT;
 import telinc.telicraft.common.tileEntities.TileEntityAdamantFurnace;
 import telinc.telicraft.common.tileEntities.TileEntitySharpener;
+import cpw.mods.fml.common.network.IGuiHandler;
 
 public class TelicraftGuiHandler implements IGuiHandler {
 

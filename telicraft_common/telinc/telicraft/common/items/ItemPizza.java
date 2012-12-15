@@ -2,17 +2,15 @@ package telinc.telicraft.common.items;
 
 import java.util.List;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.reference.TextureReferences;
-
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.ItemFood;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.MathHelper;
-import net.minecraft.src.Potion;
-import net.minecraft.src.PotionEffect;
-import net.minecraft.src.World;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 

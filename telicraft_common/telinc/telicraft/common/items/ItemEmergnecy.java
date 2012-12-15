@@ -1,11 +1,10 @@
 package telinc.telicraft.common.items;
 
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.EnumAction;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.World;
-
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.core.TelicraftDamageSources;
 import telinc.telicraft.common.reference.TextureReferences;

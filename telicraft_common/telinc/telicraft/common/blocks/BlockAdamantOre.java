@@ -1,7 +1,6 @@
 package telinc.telicraft.common.blocks;
 
-import net.minecraft.src.BlockOre;
-
+import net.minecraft.block.BlockOre;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.reference.TextureReferences;
 

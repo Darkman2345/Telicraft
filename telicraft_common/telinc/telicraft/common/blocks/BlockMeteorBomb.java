@@ -2,19 +2,17 @@ package telinc.telicraft.common.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLLog;
-
-import net.minecraft.src.Block;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityArrow;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.Item;
-import net.minecraft.src.Material;
-import net.minecraft.src.World;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.Item;
+import net.minecraft.world.World;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.entities.EntityMeteorBombPrimed;
 import telinc.telicraft.common.reference.TextureReferences;
+import cpw.mods.fml.common.FMLLog;
 
 public class BlockMeteorBomb extends Block {
 	public BlockMeteorBomb(int par1, int par2) {
@@ -150,9 +148,7 @@ public class BlockMeteorBomb extends Block {
 	}
 	
 	private void warnIgnite(World world, EntityPlayer player, int x, int y, int z){
-		FMLLog.warning("[Telicraft] WARNING: Player " + player.username +
-				" ignited Meteor Bomb at XYZ (" + x + ", " +
-				y + ", " + z +") in world \"" + world +"\"!", this);
+		FMLLog.warning("[Telicraft] WARNING: Player " + player.username + " ignited Meteor Bomb at XYZ (" + x + ", " + y + ", " + z +") in world \"" + world.getWorldInfo().getWorldName() +"\"!", this);
 	}
 	
 	@Override

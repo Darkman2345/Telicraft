@@ -27,4 +27,7 @@ public class TextureReferences {
 	
 	/** The location of the new Petrifying Potion model. */
 	public static final String POTION_PETRIFY_NEW = "/telinc/telicraft/textures/entities/petrify.png";
+
+	/** The location of the Alarm's texture. */
+    public static final String ALARM = "/telinc/telicraft/textures/misc/alarm.png";
 }

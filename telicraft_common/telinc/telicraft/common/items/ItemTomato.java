@@ -1,7 +1,6 @@
 package telinc.telicraft.common.items;
 
-import net.minecraft.src.ItemSeeds;
-
+import net.minecraft.item.ItemSeeds;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.reference.TextureReferences;
 

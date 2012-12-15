@@ -2,10 +2,10 @@ package telinc.telicraft.common.core;
 
 import java.util.Random;
 
-import net.minecraft.src.IChunkProvider;
-import net.minecraft.src.World;
-import net.minecraft.src.WorldGenFlowers;
-import net.minecraft.src.WorldGenMinable;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenFlowers;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.misc.WorldGenImpactCrater;
 import telinc.telincCore.WorldGenEnd;
@@ -57,12 +57,12 @@ public class TelicraftWorldGenerator implements IWorldGenerator {
 
 	public void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
 		
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 10; i++) {
 			int adamantXcoord = chunkX + rand.nextInt(16);
 			int adamantYcoord = rand.nextInt(45);
 			int adamantZcoord = chunkZ + rand.nextInt(16);
 
-			(new WorldGenMinable(TelicraftMain.adamantOre.blockID, 8)).generate(world, rand, adamantXcoord, adamantYcoord, adamantZcoord);
+			(new WorldGenMinable(TelicraftMain.adamantOre.blockID, 7)).generate(world, rand, adamantXcoord, adamantYcoord, adamantZcoord);
 		}
 
 		for (int j = 0; j < 2; j++) {

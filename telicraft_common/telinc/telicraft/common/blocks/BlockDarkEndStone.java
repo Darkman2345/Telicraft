@@ -2,11 +2,10 @@ package telinc.telicraft.common.blocks;
 
 import java.util.Random;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.Entity;
-import net.minecraft.src.Material;
-import net.minecraft.src.World;
-
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.world.World;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.core.TelicraftDamageSources;
 import telinc.telicraft.common.reference.TextureReferences;

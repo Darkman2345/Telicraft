@@ -1,8 +1,8 @@
 package telinc.telicraft.common.blocks;
 
-import net.minecraft.src.BlockFlower;
-import net.minecraft.src.Material;
-import net.minecraft.src.World;
+import net.minecraft.block.BlockFlower;
+import net.minecraft.block.material.Material;
+import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import telinc.telicraft.common.TelicraftMain;

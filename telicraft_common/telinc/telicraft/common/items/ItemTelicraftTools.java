@@ -2,9 +2,9 @@ package telinc.telicraft.common.items;
 
 import java.util.List;
 
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import telinc.telicraft.common.TelicraftMain;
 import telinc.telicraft.common.reference.TextureReferences;
 import cpw.mods.fml.common.Side;
