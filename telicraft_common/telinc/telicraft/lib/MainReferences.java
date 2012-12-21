@@ -8,7 +8,7 @@ public class MainReferences {
 	public static final String MOD_NAME = "Telicraft";
 	
 	/** The mod version. */
-	public static final String MOD_VERSION = "2.9.9 Beta";
+	public static final String MOD_VERSION = "3.5.0 Beta";
 	
 	/**
 	 * How strong an explosion from a machine is.

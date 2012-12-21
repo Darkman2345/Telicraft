@@ -2,7 +2,7 @@ package telinc.telicraft.bcIntegration;
 
 import net.minecraft.tileentity.TileEntity;
 import telinc.telicraft.lib.TextureReferences;
-import telinc.telicraft.tileentity.TileEntityAdamantFurnace;
+import telinc.telicraft.tileentity.TileAdamantFurnace;
 import buildcraft.api.gates.ITriggerParameter;
 import buildcraft.api.gates.Trigger;
 
@@ -32,10 +32,10 @@ public class AdamantFurnaceTriggerIsInSuperheat extends Trigger {
 	}
 	
 	public boolean isTriggerActive(TileEntity tile, ITriggerParameter parameter) {
-		if(tile instanceof TileEntityAdamantFurnace){
-			TileEntityAdamantFurnace furnace = (TileEntityAdamantFurnace)tile;
+		if(tile instanceof TileAdamantFurnace){
+			TileAdamantFurnace furnace = (TileAdamantFurnace)tile;
 			
-			return furnace.heatIncrease;
+			return furnace.getHeatIncrease();
 		}else{
 			return false;
 		}

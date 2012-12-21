@@ -16,8 +16,8 @@ import telinc.telicraft.entity.EntityPetrify;
 import telinc.telicraft.lib.RandomMessages;
 import telinc.telicraft.lib.TextureReferences;
 import telinc.telicraft.world.TelicraftDamageSources;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTelicraftPotion extends Item {
 	

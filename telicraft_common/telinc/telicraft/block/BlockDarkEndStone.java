@@ -33,7 +33,7 @@ public class BlockDarkEndStone extends Block {
 	@Override
 	public void onEntityWalking(World par1World, int par2, int par3, int par4, Entity par5Entity) {
 		if(TelicraftMain.doEndstoneDamage){
-			par5Entity.attackEntityFrom(TelicraftDamageSources.stone, 1);
+			par5Entity.attackEntityFrom(TelicraftDamageSources.stone, 3);
 		}
 	}
 	

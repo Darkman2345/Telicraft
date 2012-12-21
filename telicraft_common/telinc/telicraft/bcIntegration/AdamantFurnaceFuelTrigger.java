@@ -2,7 +2,7 @@ package telinc.telicraft.bcIntegration;
 
 import net.minecraft.tileentity.TileEntity;
 import telinc.telicraft.lib.TextureReferences;
-import telinc.telicraft.tileentity.TileEntityAdamantFurnace;
+import telinc.telicraft.tileentity.TileAdamantFurnace;
 import buildcraft.api.gates.ITriggerParameter;
 import buildcraft.api.gates.Trigger;
 
@@ -33,8 +33,8 @@ public class AdamantFurnaceFuelTrigger extends Trigger {
 	
 	@Override
 	public boolean isTriggerActive(TileEntity tile, ITriggerParameter parameter) {
-		if(tile instanceof TileEntityAdamantFurnace){
-			TileEntityAdamantFurnace var1 = (TileEntityAdamantFurnace) tile;
+		if(tile instanceof TileAdamantFurnace){
+			TileAdamantFurnace var1 = (TileAdamantFurnace) tile;
 			
 			if(parameter.getItemStack() != null){
 				if(var1.isBurning()){

@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import telinc.telicraft.TelicraftMain;
 import telinc.telicraft.lib.MainReferences;
 import telinc.telicraft.lib.TextureReferences;
-import telinc.telicraft.tileentity.TileEntitySharpener;
+import telinc.telicraft.tileentity.TileSharpener;
 
 public class BlockSharpener extends BlockContainer {
 
@@ -106,7 +106,7 @@ public class BlockSharpener extends BlockContainer {
 								item.getItemDamage()));
 
 				if (item.hasTagCompound()) {
-					entity_item.item.setTagCompound((NBTTagCompound) item
+					entity_item.func_92014_d().setTagCompound((NBTTagCompound) item
 							.getTagCompound().copy());
 				}
 
@@ -123,7 +123,7 @@ public class BlockSharpener extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
-		return new TileEntitySharpener();
+		return new TileSharpener();
 	}
 
 	@Override

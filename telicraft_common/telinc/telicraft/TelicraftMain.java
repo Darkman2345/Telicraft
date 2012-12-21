@@ -10,31 +10,38 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
+
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.PostInit;
+import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.Mod.ServerStarting;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
+
 import telinc.telicraft.api.TCRegistry;
 import telinc.telicraft.bcIntegration.TelicraftBCIntegration;
-import telinc.telicraft.block.BlockACT;
-import telinc.telicraft.block.BlockAdamantBlk;
-import telinc.telicraft.block.BlockAdamantFurnace;
-import telinc.telicraft.block.BlockAdamantOre;
-import telinc.telicraft.block.BlockAlarm;
-import telinc.telicraft.block.BlockClearGlass;
-import telinc.telicraft.block.BlockCrNether;
-import telinc.telicraft.block.BlockDarkEndStone;
-import telinc.telicraft.block.BlockMegaAdamant;
-import telinc.telicraft.block.BlockMeteor;
-import telinc.telicraft.block.BlockMeteorBomb;
-import telinc.telicraft.block.BlockPepperCrop;
-import telinc.telicraft.block.BlockRedstone;
-import telinc.telicraft.block.BlockSharpener;
-import telinc.telicraft.block.BlockSquill;
-import telinc.telicraft.block.BlockTomatoCrop;
+import telinc.telicraft.block.*;
 import telinc.telicraft.client.TelicraftClientPacketHandler;
+import telinc.telicraft.command.CommandTelicraftPetrify;
 import telinc.telicraft.creativetab.CreativeTabTelicraft;
 import telinc.telicraft.entity.EntityMeteorBombPrimed;
 import telinc.telicraft.entity.EntityPetrify;
@@ -44,21 +51,8 @@ import telinc.telicraft.handler.TelicraftFuelHandler;
 import telinc.telicraft.handler.TelicraftGuiHandler;
 import telinc.telicraft.handler.TelicraftServerPacketHandler;
 import telinc.telicraft.handler.TelicraftSharpenerHandler;
-import telinc.telicraft.item.ItemAdamantAxe;
-import telinc.telicraft.item.ItemAdamantBoots;
-import telinc.telicraft.item.ItemAdamantChest;
-import telinc.telicraft.item.ItemAdamantHelmet;
-import telinc.telicraft.item.ItemAdamantLegs;
-import telinc.telicraft.item.ItemAdamantPick;
-import telinc.telicraft.item.ItemAdamantSpade;
-import telinc.telicraft.item.ItemEmergnecy;
-import telinc.telicraft.item.ItemExcalibur;
-import telinc.telicraft.item.ItemPepper;
-import telinc.telicraft.item.ItemPizza;
-import telinc.telicraft.item.ItemSharpTool;
-import telinc.telicraft.item.ItemTelicraftPotion;
-import telinc.telicraft.item.ItemTelicraftTools;
-import telinc.telicraft.item.ItemTomato;
+import telinc.telicraft.item.*;
+import telinc.telicraft.item.crafting.ACTManager;
 import telinc.telicraft.lang.BulgarianLang;
 import telinc.telicraft.lib.AchievementReferences;
 import telinc.telicraft.lib.DeathMessages;
@@ -67,26 +61,11 @@ import telinc.telicraft.lib.ProxyReferences;
 import telinc.telicraft.lib.TextureReferences;
 import telinc.telicraft.proxy.TelicraftCommonEngine;
 import telinc.telicraft.proxy.TelicraftCommonProxy;
-import telinc.telicraft.tileentity.TileEntityAdamantFurnace;
-import telinc.telicraft.tileentity.TileEntityAlarm;
-import telinc.telicraft.tileentity.TileEntitySharpener;
+import telinc.telicraft.tileentity.TileAdamantFurnace;
+import telinc.telicraft.tileentity.TileAlarm;
+import telinc.telicraft.tileentity.TileSharpener;
 import telinc.telicraft.world.gen.TelicraftWorldGenerator;
 import telinc.telincCore.ItemUseless;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid=MainReferences.MOD_ID, name=MainReferences.MOD_NAME, version=MainReferences.MOD_VERSION)
 
@@ -143,7 +122,7 @@ public class TelicraftMain {
 	////////////////
 	//Creative Tab//
 	////////////////
-	public static CreativeTabTelicraft tabTelicraft = (CreativeTabTelicraft) new CreativeTabTelicraft().setBackgroundImageName("/telicraftCT.png");
+	public static CreativeTabTelicraft tabTelicraft = new CreativeTabTelicraft();
 	
 	////////////
 	//Instance//
@@ -162,6 +141,12 @@ public class TelicraftMain {
 	@SidedProxy(clientSide=ProxyReferences.CLIENT_ENGINE, serverSide=ProxyReferences.SERVER_ENGINE)
 	public static TelicraftCommonEngine engine;
 	
+	///////////////
+	//Config File//
+	///////////////
+	
+	static Configuration config;
+	
 	/////////////////////////////
 	//Pre-Initialization Method//
 	/////////////////////////////
@@ -176,7 +161,7 @@ public class TelicraftMain {
 		MinecraftForge.EVENT_BUS.register(new TelicraftEventHandler());
 		
 		//Config Files
-		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+		config = new Configuration(event.getSuggestedConfigurationFile());
 		
 		config.load();
 		
@@ -256,67 +241,67 @@ public class TelicraftMain {
 		adamantOre = (new BlockAdamantOre(adOreID, 0)).setStepSound(Block.soundStoneFootstep).setHardness(4.0F).setResistance(1.0F).setBlockName("adamantOre");
 		LanguageRegistry.addName(adamantOre, "Adamant Ore");
 		MinecraftForge.setBlockHarvestLevel(adamantOre, "pickaxe", 2);
-		GameRegistry.registerBlock(adamantOre);
+		GameRegistry.registerBlock(adamantOre, "adamantOre");
 		
 		//Adamant Block
 		adamantBlk = (new BlockAdamantBlk(adBlkID, 1, Material.iron)).setStepSound(Block.soundMetalFootstep).setHardness(4.0F).setResistance(30).setBlockName("adamantBlk");
 		LanguageRegistry.addName(adamantBlk, "Block of Adamant");
 		MinecraftForge.setBlockHarvestLevel(adamantBlk, "pickaxe", 3);
-		GameRegistry.registerBlock(adamantBlk);
+		GameRegistry.registerBlock(adamantBlk, "adamantBlk");
 		
 		//Mega Adamant Block
 		megaAdamant = (new BlockMegaAdamant(megaAdID, 2, Material.rock)).setStepSound(Block.soundStoneFootstep).setHardness(99.9F).setResistance(9000000.0F).setBlockName("megaAdamant");
 		LanguageRegistry.addName(megaAdamant, "Mega Adamant Block");
 		MinecraftForge.setBlockHarvestLevel(megaAdamant, "pickaxe", 3);
-		GameRegistry.registerBlock(megaAdamant);
+		GameRegistry.registerBlock(megaAdamant, "megaAdamant");
 		
 		//Cracked Netherrack
 		crackedNetherrack = (new BlockCrNether(crackedNetherrackID, 3, Material.rock)).setStepSound(Block.soundStoneFootstep).setHardness(0.3F).setResistance(0.1F).setBlockName("crackedNetherrack");
 		LanguageRegistry.addName(crackedNetherrack, "Cracked Netherrack");
 		MinecraftForge.setBlockHarvestLevel(crackedNetherrack, "pickaxe", 0);
-		GameRegistry.registerBlock(crackedNetherrack);
+		GameRegistry.registerBlock(crackedNetherrack, "crackedNetherrack");
 		
 		//Clear Glass
 		clearGlass = (new BlockClearGlass(clearGlassID, 4, Material.glass)).setStepSound(Block.soundGlassFootstep).setHardness(0.3F).setBlockName("clearGlass");
 		LanguageRegistry.addName(clearGlass, "Clear Glass");
-		GameRegistry.registerBlock(clearGlass);
+		GameRegistry.registerBlock(clearGlass, "clearGlass");
 		
 		//Sharpener
 		sharpener = (new BlockSharpener(sharpenerID)).setStepSound(Block.soundMetalFootstep).setHardness(5.0F).setResistance(10.0F).setBlockName("sharpener");
 		LanguageRegistry.addName(sharpener, "Sharpener");
 		MinecraftForge.setBlockHarvestLevel(sharpener, "pickaxe", 1);
-		GameRegistry.registerBlock(sharpener);
+		GameRegistry.registerBlock(sharpener, "sharpener");
 		
 		//Tomato Crops
 		tomatoCrop = (new BlockTomatoCrop(tomatoCropID, 16, Material.plants)).setHardness(0F).setBlockName("tomatoCrop");
 		LanguageRegistry.addName(tomatoCrop, "If you're reading this you've either found a bug or you're a 1337 haXXor.");
-		GameRegistry.registerBlock(tomatoCrop);
+		GameRegistry.registerBlock(tomatoCrop, "tomatoCrop");
 		
 		//Pepper Crops
 		pepperCrop = (new BlockPepperCrop(pepperCropID, 32, Material.plants)).setHardness(0F).setBlockName("pepperCrop");
 		LanguageRegistry.addName(pepperCrop, "\"So be it! Let my life fuel the spell that ends his!\"");
-		GameRegistry.registerBlock(pepperCrop);
+		GameRegistry.registerBlock(pepperCrop, "pepperCrop");
 		
 		//Dark End Stone
 		darkEndStone = (new BlockDarkEndStone(darkEndStoneID, 9, Material.rock)).setHardness(3.0F).setResistance(15.0F).setStepSound(Block.soundStoneFootstep).setBlockName("darkEndStone");
 		LanguageRegistry.addName(darkEndStone, "Dark End Stone");
-		GameRegistry.registerBlock(darkEndStone);
+		GameRegistry.registerBlock(darkEndStone, "darkEndStone");
 		
 		//Meteor Block
 		meteorBlock = (new BlockMeteor(meteorBlockID, 15, Material.sand)).setHardness(0.1F).setResistance(0.1F).setStepSound(Block.soundSandFootstep).setBlockName("meteorBlock");
 		LanguageRegistry.addName(meteorBlock, "Meteor Block");
-		GameRegistry.registerBlock(meteorBlock);
+		GameRegistry.registerBlock(meteorBlock, "meteorBlock");
 		
 		//Meteor Bomb
 		meteorBomb = (new BlockMeteorBomb(meteorBombID, 0)).setHardness(8.1F).setResistance(1.0F).setStepSound(Block.soundPowderFootstep).setBlockName("meteorBomb");
 		LanguageRegistry.addName(meteorBomb, "Meteor Bomb");
-		GameRegistry.registerBlock(meteorBomb);
+		GameRegistry.registerBlock(meteorBomb, "meteorBomb");
 		
 		//Block of Redstone
 		redstoneBlk = (new BlockRedstone(redstoneBlkID, 30)).setHardness(6F).setResistance(56.3F).setStepSound(Block.soundMetalFootstep).setBlockName("redstoneBlk");
 		MinecraftForge.setBlockHarvestLevel(redstoneBlk, "pickaxe", 2);
 		LanguageRegistry.addName(redstoneBlk, "Block of Redstone");
-		GameRegistry.registerBlock(redstoneBlk);
+		GameRegistry.registerBlock(redstoneBlk, "redstoneBlk");
 		
 		//Adamant Furnace + Active
 		adamantFurnace = (new BlockAdamantFurnace(adamantFurnaceID, false)).setHardness(12.56F).setResistance(15F).setStepSound(Block.soundMetalFootstep).setCreativeTab(tabTelicraft).setBlockName("adamantFurnace");
@@ -325,23 +310,23 @@ public class TelicraftMain {
 		MinecraftForge.setBlockHarvestLevel(adamantFurnaceActive, "pickaxe", 2);
 		LanguageRegistry.addName(adamantFurnace, "Adamant Furnace");
 		LanguageRegistry.addName(adamantFurnaceActive, "Adamant Furnace");
-		GameRegistry.registerBlock(adamantFurnace);
-		GameRegistry.registerBlock(adamantFurnaceActive);
+		GameRegistry.registerBlock(adamantFurnace, "adamantFurnace");
+		GameRegistry.registerBlock(adamantFurnaceActive, "adamantFurnaceActive");
 		
 		//Alarm
 		alarm = (new BlockAlarm(alarmID)).setStepSound(Block.soundPowderFootstep).setBlockName("alarm");
 		LanguageRegistry.addName(alarm, "Alarm");
-		GameRegistry.registerBlock(alarm);
+		GameRegistry.registerBlock(alarm, "alarm");
 		
 		//Advanced Crafting Table
-		act = (new BlockACT(actID)).setHardness(12.5F).setResistance(50F).setStepSound(Block.soundWoodFootstep).setBlockName("act");
+		act = (new BlockACT(actID)).setHardness(12.5F).setResistance(50F).setStepSound(Block.soundWoodFootstep).setBlockName("advancedCraftingTable");
 		LanguageRegistry.addName(act, "Advanced Crafting Table");
-		GameRegistry.registerBlock(act);
+		GameRegistry.registerBlock(act, "advancedCraftingTable");
 		
 		//Squill
 		squill = (BlockFlower) (new BlockSquill(squillID, 8, Material.plants)).setBlockName("squill");
 		LanguageRegistry.addName(squill, "Squill");
-		GameRegistry.registerBlock(squill);
+		GameRegistry.registerBlock(squill, "squill");
 		
 		/////////
 		//Items//
@@ -350,47 +335,59 @@ public class TelicraftMain {
 		//Adamant (Gem)
 		adamant = new ItemUseless(adID, tabTelicraft, 64, false, "uncommon", itemsPng).setIconIndex(0).setItemName("adamant");
 		LanguageRegistry.addName(adamant, "Adamant");
+		GameRegistry.registerItem(adamant, "adamant");
 		
 		//Mega Stick
 		megastick = new ItemUseless(megastickID, tabTelicraft, 64, false, "common", itemsPng).setIconIndex(2).setItemName("megastick");
 		LanguageRegistry.addName(megastick, "Mega Stick");
+		GameRegistry.registerItem(megastick, "megastick");
 		
 		//Adamant Fuel Ingot
 		fuel = new ItemUseless(fuelID, tabTelicraft, 64, false, "common", itemsPng).setIconIndex(1).setItemName("adamantFuelIngot");
 		LanguageRegistry.addName(fuel, "Adamant Fuel Ingot");
+		GameRegistry.registerItem(fuel, "adamantFuelIngot");
 		
 		//Emergency Item
 		emerg = new ItemEmergnecy(emergID).setIconIndex(6).setItemName("emerg");
 		LanguageRegistry.addName(emerg, "Emergency Item");
+		GameRegistry.registerItem(emerg, "emerg");
 		
 		//Tomato
 		tomato = new ItemTomato(tomatoID, tomatoCrop.blockID, Block.tilledField.blockID).setIconIndex(5).setItemName("tomato");
 		LanguageRegistry.addName(tomato, "Tomato");
+		GameRegistry.registerItem(tomato, "tomato");
 		
 		//Pepper
 		pepper = new ItemPepper(pepperID, pepperCrop.blockID, Block.tilledField.blockID).setIconIndex(21).setItemName("pepper");
 		LanguageRegistry.addName(pepper, "Pepper");
+		GameRegistry.registerItem(pepper, "pepper");
 		
-		//Raw Pizza
+		//Pizza
 		pizza = new ItemPizza(pizzaID, 4, 1.12F).setItemName("pizza");
+		GameRegistry.registerItem(pizza, "pizza");
 		
 		//Tools
-		tools = new ItemTelicraftTools(toolsID).setItemName("tools");
+		tools = new ItemTelicraftTools(toolsID).setItemName("toolsTelicraft");
+		GameRegistry.registerItem(tools, "tools");
 		
 		//Dough
 		dough = new ItemUseless(doughID, tabTelicraft, 16, false, "common", itemsPng).setIconIndex(24).setItemName("dough");
 		LanguageRegistry.addName(dough, "Dough");
+		GameRegistry.registerItem(dough, "dough");
 		
 		//Ketchup
 		ketchup = new ItemUseless(ketchupID, tabTelicraft, 1, false, "common", itemsPng).setIconIndex(25).setItemName("ketchup");
 		LanguageRegistry.addName(ketchup, "Bottle of Ketchup");
+		GameRegistry.registerItem(ketchup, "ketchup");
 		
 		//Meteor Dust
 		meteorDust = new ItemUseless(meteorDustID, tabTelicraft, 16, false, "epic", itemsPng).setIconIndex(12).setItemName("meteorDust");
 		LanguageRegistry.addName(meteorDust, "Meteor Dust");
+		GameRegistry.registerItem(meteorDust, "meteorDust");
 		
 		//Custom Potions
-		potionCustom = new ItemTelicraftPotion(potionCustomID).setItemName("customPotion");
+		potionCustom = new ItemTelicraftPotion(potionCustomID).setItemName("customPotionTelicraft");
+		GameRegistry.registerItem(potionCustom, "customPotionTelicraft");
 		
 		////////////////////////////
 		//Tools / Weapons / Armour//
@@ -488,6 +485,49 @@ public class TelicraftMain {
 			"gemAdamant"
 		});
 		
+		//Redstone
+		GameRegistry.addShapelessRecipe(new ItemStack(Item.redstone, 9), new Object[]{
+		    new ItemStack(redstoneBlk, 1)
+		});
+		
+	    //Adamant
+        GameRegistry.addShapelessRecipe(new ItemStack(adamant, 9), new Object[]{
+            new ItemStack(adamantBlk, 1)
+        });
+		
+		//Potion of Craziness
+		GameRegistry.addShapelessRecipe(new ItemStack(potionCustom, 1, 0), new Object[]{
+		    new ItemStack(Item.potion, 1, 32),
+		    new ItemStack(Item.rottenFlesh, 1)
+		});
+		
+		//Petrifying Potion
+		GameRegistry.addShapelessRecipe(new ItemStack(potionCustom, 1, 1), new Object[]{
+		    new ItemStack(Item.potion, 1, 16380),
+		    new ItemStack(Block.stone, 1)
+		});
+		
+	      
+        //Direct Petrifying Potion (Gunpowder + Normal)
+        GameRegistry.addShapelessRecipe(new ItemStack(potionCustom, 1, 2), new Object[]{
+            new ItemStack(potionCustom, 1, 1),
+            new ItemStack(Item.gunpowder, 1)
+        });
+        
+        
+        //Direct Petrifying Potion (Splash Harming II + Stone)
+        GameRegistry.addShapelessRecipe(new ItemStack(potionCustom, 1, 2), new Object[]{
+            new ItemStack(Item.potion, 1, 32764),
+            new ItemStack(Block.stone)
+        });
+		
+        
+        //Potion of Randomness
+        GameRegistry.addShapelessRecipe(new ItemStack(potionCustom, 1, 3), new Object[]{
+            new ItemStack(Item.potion, 1, 16310),
+            new ItemStack(Item.enderPearl)
+        });
+        
 		//////////////////
 		//Shaped Recipes//
 		//////////////////
@@ -598,6 +638,19 @@ public class TelicraftMain {
 			Character.valueOf('C'), new ItemStack(Block.workbench, 1)
 		});
 		
+		//Block of Redstone
+		GameRegistry.addRecipe(new ItemStack(redstoneBlk, 1), new Object[]{
+		    "RRR", "RRR", "RRR",
+		    Character.valueOf('R'), new ItemStack(Item.redstone, 1)
+		});
+		
+		//Alarm
+		GameRegistry.addRecipe(new ItemStack(alarm, 1), new Object[]{
+		    "RBR", "BCB", "RBR",
+		    Character.valueOf('R'), new ItemStack(Item.dyePowder, 1, 1),
+		    Character.valueOf('B'), new ItemStack(Item.dyePowder, 1, 0),
+		    Character.valueOf('C'), new ItemStack(Item.redstone, 1)
+		});
 		
 		////////////////////
 		//Smelting Recipes//
@@ -632,6 +685,16 @@ public class TelicraftMain {
 			Character.valueOf('D'), new ItemStack(meteorDust),
 			Character.valueOf('G'), new ItemStack(Item.gunpowder)
 		});
+		
+		//Adamant Furnace
+		ACTManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
+	        new ItemStack(adamantFurnace, 1), new Object[]{
+	            "AAA", "ARA", "ALA",
+	            Character.valueOf('A'), "gemAdamant",
+	            Character.valueOf('R'), new ItemStack(redstoneBlk, 1),
+	            Character.valueOf('L'), new ItemStack(Item.bucketLava, 1)
+	        }
+		));
 		
 		/////////
 		//Other//
@@ -670,6 +733,9 @@ public class TelicraftMain {
 		//Main Localizations
 		this.addGeneralLocalizations();
 		
+		//Command Localizations
+		this.addCommandLocalizations();
+		
 		//Achievement Localizations
 		this.addAchievementLocalizations();
 		
@@ -687,9 +753,9 @@ public class TelicraftMain {
 		EntityRegistry.registerModEntity(EntityMeteorBombPrimed.class, "primedMeteorBomb", 1, this, 160, 5, true);
 		
 		//Tile Entities
-		GameRegistry.registerTileEntity(TileEntitySharpener.class, "tileEntitySharpener");
-		GameRegistry.registerTileEntity(TileEntityAdamantFurnace.class, "tileEntityAdamantFurnace");
-		GameRegistry.registerTileEntity(TileEntityAlarm.class, "tileEntityAlarm");
+		GameRegistry.registerTileEntity(TileSharpener.class, "tileEntitySharpener");
+		GameRegistry.registerTileEntity(TileAdamantFurnace.class, "tileEntityAdamantFurnace");
+		GameRegistry.registerTileEntity(TileAlarm.class, "tileEntityAlarm");
 		
 		//Register GUI Handler
 		NetworkRegistry.instance().registerGuiHandler(this, new TelicraftGuiHandler());
@@ -717,6 +783,15 @@ public class TelicraftMain {
 		OreDictionary.registerOre("stickAdamant", megastick);
 	}
 	
+	//////////////////////////
+	//Server Starting Method//
+	//////////////////////////
+	
+	@ServerStarting
+	public void serverStarting(FMLServerStartingEvent event){
+	    event.registerServerCommand(new CommandTelicraftPetrify());
+	}
+	
 	private void addAchievementName(String ach, String name){
 		engine.addLocal("achievement." + ach, name);
 	}
@@ -741,6 +816,12 @@ public class TelicraftMain {
 		engine.addLocal("death.meteorBomb", DeathMessages.DEATH_METEOR_BOMB);
 		
 		(new BulgarianLang()).addLocalizationsGeneral(); // Adds in bulgarian localizations.
+    }
+    
+    private void addCommandLocalizations(){
+        engine.addLocal("commands.telicraft.petrifylook.usage", "/telicraft-petrifylook new\nOR\n/telicraft-petrifylook classic");
+        engine.addLocal("commands.telicraft.petrifylook.classic", "Now using the classic model for the Direct Petrifying Potion.");
+        engine.addLocal("commands.telicraft.petrifylook.new", "Now using the new model for the Direct Petrifying Potion.");
     }
     
     private void addAchievementLocalizations(){
@@ -772,14 +853,26 @@ public class TelicraftMain {
 		engine.addLocal("item.pizza.cookedFirst.name", "Cooked Pizza");
 		engine.addLocal("item.pizza.cookedSecond.name", "Cooked Pizza with Ketchup");
 	
-		engine.addLocal("item.customPotion.crazy.name", "Potion of Craziness");
-		engine.addLocal("item.customPotion.random.name", "Potion of Randomness");
-		engine.addLocal("item.customPotion.petrify.name", "Petrifying Potion");
-		engine.addLocal("item.customPotion.petrifyDirect.name", "Direct Petrifying Potion");
+		engine.addLocal("item.customPotionTelicraft.crazy.name", "Potion of Craziness");
+		engine.addLocal("item.customPotionTelicraft.random.name", "Potion of Randomness");
+		engine.addLocal("item.customPotionTelicraft.petrify.name", "Petrifying Potion");
+		engine.addLocal("item.customPotionTelicraft.petrifyDirect.name", "Direct Petrifying Potion");
 		
-		engine.addLocal("item.tools.adamantSword.name", "Flat Adamant Sword");
+		engine.addLocal("item.toolsTelicraft.adamantSword.name", "Flat Adamant Sword");
     }
 	
+    public static void setConfigOption(String categoryName, String propertyName, String newValue){
+        config.load();
+        
+        if (config.categories.containsKey(categoryName)) {
+            if (config.categories.get(categoryName).containsKey(propertyName)) {
+                config.categories.get(categoryName).get(propertyName).value = newValue;
+            }
+        }
+        
+        config.save();
+    }
+    
 	////////////
 	//Main IDs//
 	////////////

@@ -6,8 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import telinc.telicraft.TelicraftMain;
 import telinc.telicraft.lib.TextureReferences;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockClearGlass extends Block {
 	public BlockClearGlass(int id, int texture, Material material) {

@@ -6,8 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import telinc.telicraft.TelicraftMain;
 import telinc.telicraft.lib.TextureReferences;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemExcalibur extends ItemSword {
 

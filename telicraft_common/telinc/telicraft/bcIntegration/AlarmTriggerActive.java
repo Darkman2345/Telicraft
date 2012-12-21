@@ -2,7 +2,7 @@ package telinc.telicraft.bcIntegration;
 
 import net.minecraft.tileentity.TileEntity;
 import telinc.telicraft.lib.TextureReferences;
-import telinc.telicraft.tileentity.TileEntityAlarm;
+import telinc.telicraft.tileentity.TileAlarm;
 import buildcraft.api.gates.ITriggerParameter;
 import buildcraft.api.gates.Trigger;
 
@@ -33,8 +33,8 @@ public class AlarmTriggerActive extends Trigger {
 	
 	@Override
 	public boolean isTriggerActive(TileEntity tile, ITriggerParameter parameter) {
-		if(tile instanceof TileEntityAlarm){
-			TileEntityAlarm alarm = (TileEntityAlarm)tile;
+		if(tile instanceof TileAlarm){
+			TileAlarm alarm = (TileAlarm)tile;
 			
 			return alarm.active;
 		}else{

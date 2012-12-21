@@ -59,13 +59,13 @@ public class TelicraftCommonEngine {
 		if(fv.getMajorVersion() != 6){
 			state = EnumForgeVersionState.MAJOR_NOT_MATCH;
 			throw new RuntimeException("Minecraft Forge's major version is invalid.");
-		}else if(fv.getRevisionVersion() != 2){
+		}else if(fv.getRevisionVersion() != 0){
 			state = EnumForgeVersionState.REVISION_NOT_MATCH;
 			throw new RuntimeException("Minecraft Forge's revision version is invalid.");
-		}else if(fv.getBuildVersion() < 445){
+		}else if(fv.getBuildVersion() < 471){
 			state = EnumForgeVersionState.BUILD_TOO_LOW;
 			throw new RuntimeException("Minecraft Forge's build version is invalid.");
-		}else if(fv.getMinorVersion() != 4){
+		}else if(fv.getMinorVersion() != 5){
 			state = EnumForgeVersionState.MINOR_NOT_MATCH;
 			FMLLog.warning("[Telicraft] Minecraft Forge's minor version is not the expected one. While this may not have any effect, it can break Telicraft.", new Object[0]);
 		}else{

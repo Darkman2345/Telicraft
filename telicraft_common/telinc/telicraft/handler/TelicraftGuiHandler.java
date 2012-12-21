@@ -3,14 +3,15 @@ package telinc.telicraft.handler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import telinc.telicraft.client.gui.GuiACT;
-import telinc.telicraft.client.gui.GuiAdamantFurnace;
-import telinc.telicraft.client.gui.GuiSharpener;
-import telinc.telicraft.gui.ContainerAdamantFurnace;
-import telinc.telicraft.gui.ContainerSharpener;
-import telinc.telicraft.gui.act.ContainerACT;
-import telinc.telicraft.tileentity.TileEntityAdamantFurnace;
-import telinc.telicraft.tileentity.TileEntitySharpener;
+
+import telinc.telicraft.client.gui.inventory.GuiACT;
+import telinc.telicraft.client.gui.inventory.GuiAdamantFurnace;
+import telinc.telicraft.client.gui.inventory.GuiSharpener;
+import telinc.telicraft.inventory.ContainerACT;
+import telinc.telicraft.inventory.ContainerAdamantFurnace;
+import telinc.telicraft.inventory.ContainerSharpener;
+import telinc.telicraft.tileentity.TileAdamantFurnace;
+import telinc.telicraft.tileentity.TileSharpener;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class TelicraftGuiHandler implements IGuiHandler {
@@ -23,10 +24,10 @@ public class TelicraftGuiHandler implements IGuiHandler {
 		
 		if (id == 0) {
 			return new ContainerSharpener(player.inventory,
-					(TileEntitySharpener) tile_entity);
+					(TileSharpener) tile_entity);
 		} else if (id == 1) {
 			return new ContainerAdamantFurnace(player.inventory,
-					(TileEntityAdamantFurnace) tile_entity);
+					(TileAdamantFurnace) tile_entity);
 		} else if (id == 2) {
 			return new ContainerACT(player.inventory, world, x, y, z);
 		}
@@ -42,10 +43,10 @@ public class TelicraftGuiHandler implements IGuiHandler {
 		
 		if (id == 0) {
 			return new GuiSharpener(player.inventory,
-					(TileEntitySharpener) tile_entity);
+					(TileSharpener) tile_entity);
 		} else if (id == 1) {
 			return new GuiAdamantFurnace(player.inventory,
-					(TileEntityAdamantFurnace) tile_entity);
+					(TileAdamantFurnace) tile_entity);
 		} else if (id == 2) {
 			return new GuiACT(player.inventory, world, x, y, z);
 		}

@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IArmorTextureProvider;
 import telinc.telicraft.TelicraftMain;
 import telinc.telicraft.lib.TextureReferences;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemAdamantHelmet extends ItemArmor implements IArmorTextureProvider {
 

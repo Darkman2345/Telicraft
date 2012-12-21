@@ -7,7 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import telinc.telicraft.TelicraftMain;
 import telinc.telicraft.lib.TextureReferences;
-import telinc.telicraft.tileentity.TileEntityAlarm;
+import telinc.telicraft.tileentity.TileAlarm;
 
 public class BlockAlarm extends BlockContainer {
 	
@@ -58,7 +58,7 @@ public class BlockAlarm extends BlockContainer {
 	}
 	
 	private void setActive(World world, int x, int y, int z, boolean value){
-		TileEntityAlarm tile_entity = (TileEntityAlarm) world.getBlockTileEntity(x, y, z);
+		TileAlarm tile_entity = (TileAlarm) world.getBlockTileEntity(x, y, z);
 		
 		if(tile_entity != null){
 			tile_entity.active = value;
@@ -67,7 +67,7 @@ public class BlockAlarm extends BlockContainer {
 	
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
-		return new TileEntityAlarm();
+		return new TileAlarm();
 	}
 	
 	@Override

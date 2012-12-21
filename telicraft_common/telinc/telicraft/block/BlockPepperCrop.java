@@ -16,8 +16,8 @@ import net.minecraftforge.common.IPlantable;
 import telinc.telicraft.TelicraftMain;
 import telinc.telicraft.lib.TextureReferences;
 import telinc.telincCore.TelincCoreFunctions;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockPepperCrop extends BlockFlower implements IPlantable {
 

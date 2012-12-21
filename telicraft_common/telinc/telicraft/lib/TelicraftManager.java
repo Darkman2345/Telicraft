@@ -3,8 +3,8 @@ package telinc.telicraft.lib;
 import java.util.List;
 import java.util.Map;
 
-import telinc.telicraft.gui.SharpenerRecipes;
-import telinc.telicraft.gui.act.ACTManager;
+import telinc.telicraft.item.crafting.ACTManager;
+import telinc.telicraft.item.crafting.SharpenerRecipes;
 
 /**
  * Just used to return a few payload values.
