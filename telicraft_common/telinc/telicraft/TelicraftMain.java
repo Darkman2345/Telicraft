@@ -1,5 +1,3 @@
-//TODO Not Enough Items support.
-
 package telinc.telicraft;
 
 import net.minecraft.block.Block;
