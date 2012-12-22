@@ -10,22 +10,21 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemExcalibur extends ItemSword {
+    public ItemExcalibur(int id, EnumToolMaterial toolMaterial) {
+        super(id, toolMaterial);
+        maxStackSize = 1;
+        this.setCreativeTab(TelicraftMain.tabTelicraft);
+    }
 
-	public ItemExcalibur(int id, EnumToolMaterial toolMaterial) {
-		super(id, toolMaterial);
-		maxStackSize = 1;
-		this.setCreativeTab(TelicraftMain.tabTelicraft);
-	}
+    @Override
+    public String getTextureFile() {
+        return TextureReferences.ITEM_TEXTURE;
+    }
 
-	@Override
-	public String getTextureFile() {
-		return TextureReferences.ITEM_TEXTURE;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public EnumRarity getRarity(ItemStack id) {
-		return EnumRarity.rare;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public EnumRarity getRarity(ItemStack id) {
+        return EnumRarity.rare;
+    }
 
 }

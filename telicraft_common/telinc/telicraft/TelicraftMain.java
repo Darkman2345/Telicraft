@@ -1,3 +1,5 @@
+//TODO Not Enough Items support.
+
 package telinc.telicraft;
 
 import net.minecraft.block.Block;
@@ -147,10 +149,7 @@ public class TelicraftMain {
 	
 	static Configuration config;
 	
-	/////////////////////////////
-	//Pre-Initialization Method//
-	/////////////////////////////
-	
+	/** PreInit method */
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
 		
@@ -159,6 +158,9 @@ public class TelicraftMain {
 		
 		//Event Handler
 		MinecraftForge.EVENT_BUS.register(new TelicraftEventHandler());
+		
+	    //Register Sounds
+        proxy.registerSoundHandler();
 		
 		//Config Files
 		config = new Configuration(event.getSuggestedConfigurationFile());
@@ -219,10 +221,7 @@ public class TelicraftMain {
 		
 	}
 	
-	/////////////////////////
-	//Initialization Method//
-	/////////////////////////
-	
+	/** Init method */
 	@Init
 	public void load(FMLInitializationEvent event) {
 		
@@ -689,7 +688,7 @@ public class TelicraftMain {
 		//Adamant Furnace
 		ACTManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
 	        new ItemStack(adamantFurnace, 1), new Object[]{
-	            "AAA", "ARA", "ALA",
+	            "AAA", "ALA", "ARA",
 	            Character.valueOf('A'), "gemAdamant",
 	            Character.valueOf('R'), new ItemStack(redstoneBlk, 1),
 	            Character.valueOf('L'), new ItemStack(Item.bucketLava, 1)
@@ -753,9 +752,9 @@ public class TelicraftMain {
 		EntityRegistry.registerModEntity(EntityMeteorBombPrimed.class, "primedMeteorBomb", 1, this, 160, 5, true);
 		
 		//Tile Entities
-		GameRegistry.registerTileEntity(TileSharpener.class, "tileEntitySharpener");
-		GameRegistry.registerTileEntity(TileAdamantFurnace.class, "tileEntityAdamantFurnace");
-		GameRegistry.registerTileEntity(TileAlarm.class, "tileEntityAlarm");
+		GameRegistry.registerTileEntity(TileSharpener.class, "Sharpener");
+		GameRegistry.registerTileEntity(TileAdamantFurnace.class, "AdamantFurnace");
+		GameRegistry.registerTileEntity(TileAlarm.class, "Alarm");
 		
 		//Register GUI Handler
 		NetworkRegistry.instance().registerGuiHandler(this, new TelicraftGuiHandler());
@@ -763,17 +762,11 @@ public class TelicraftMain {
 		//Buildcraft Integration
 		TelicraftBCIntegration.run();
 		
-		//Register Sounds
-		proxy.registerSoundHandler();
-		
 		//Register Renderers
 		proxy.registerRenderThings();
 	}
 	
-	//////////////////////////////
-	//Post-Initialization Method//
-	//////////////////////////////
-
+	/** PostInit method */
 	@PostInit
 	public void postInit(FMLPostInitializationEvent event) {
 		System.out.println("Telicraft " + MainReferences.MOD_VERSION + " Initialized");
@@ -783,10 +776,7 @@ public class TelicraftMain {
 		OreDictionary.registerOre("stickAdamant", megastick);
 	}
 	
-	//////////////////////////
-	//Server Starting Method//
-	//////////////////////////
-	
+	/** ServerStarting method */
 	@ServerStarting
 	public void serverStarting(FMLServerStartingEvent event){
 	    event.registerServerCommand(new CommandTelicraftPetrify());
@@ -815,7 +805,7 @@ public class TelicraftMain {
 		engine.addLocal("death.random", DeathMessages.DEATH_RANDOM);
 		engine.addLocal("death.meteorBomb", DeathMessages.DEATH_METEOR_BOMB);
 		
-		(new BulgarianLang()).addLocalizationsGeneral(); // Adds in bulgarian localizations.
+		BulgarianLang.addLocalizationsGeneral();  // Adds in bulgarian localizations.
     }
     
     private void addCommandLocalizations(){
@@ -845,7 +835,7 @@ public class TelicraftMain {
     }
     
     private void addBlockLocalizations(){
-    	(new BulgarianLang()).addLocalizationsBlocks();	// Adds in the bulgarian localizations.
+    	BulgarianLang.addLocalizationsBlocks();    // Adds in the bulgarian localizations.
     }
     
     private void addItemLocalizations(){

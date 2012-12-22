@@ -12,12 +12,14 @@ import telinc.telicraft.TelicraftMain;
  */
 public class TelicraftSoundHandler {
     @ForgeSubscribe
-    public void onSound(SoundLoadEvent event){
+    public void onSoundLoad(SoundLoadEvent event) {
         try{
-        	// Try and add the alarm sounds.
-        	event.manager.soundPoolSounds.addSound("telicraft/alarm.wav", TelicraftMain.class.getResource("/telinc/telicraft/resources/alarm.wav"));
-        }catch (Exception e){
-        	FMLLog.warning("[Telicraft] Failed to register one or more sounds.", new Object[0]);
+            event.manager.soundPoolSounds.addSound("telicraft/alarm.wav", TelicraftMain.class.getResource("/telinc/telicraft/resources/alarm.wav"));
+            event.manager.soundPoolSounds.addSound("telicraft/meteorBomb.wav", TelicraftMain.class.getResource("/telinc/telicraft/resources/meteorBomb.wav"));
+            FMLLog.finer("[Telicraft] All sounds were registered successfully!", this);
+        }catch(Exception e){
+            FMLLog.warning("[Telicraft] Failed to register one or more sounds.", this);
+            e.printStackTrace();
         }
     }
 }

@@ -18,6 +18,7 @@ public class BlockMeteorBomb extends Block {
 	public BlockMeteorBomb(int par1, int par2) {
 		super(par1, par2, Material.tnt);
 		this.setCreativeTab(TelicraftMain.tabTelicraft);
+		this.setTextureFile(TextureReferences.BLOCK_TEXTURE);
 	}
 
 	/**
@@ -151,8 +152,8 @@ public class BlockMeteorBomb extends Block {
 		FMLLog.warning("[Telicraft] WARNING: Player " + player.username + " ignited Meteor Bomb at XYZ (" + x + ", " + y + ", " + z +") in world \"" + world.getWorldInfo().getWorldName() +"\"!", this);
 	}
 	
-	@Override
+	/*@Override
 	public String getTextureFile() {
 		return TextureReferences.BLOCK_TEXTURE;
-	}
+	}*/
 }
